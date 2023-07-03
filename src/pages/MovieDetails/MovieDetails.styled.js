@@ -6,6 +6,7 @@ const Img = styled.img`
 
 const MovieSection = styled.section`
   display: flex;
+  gap: 20px;
 `;
 
 export { Img, MovieSection };

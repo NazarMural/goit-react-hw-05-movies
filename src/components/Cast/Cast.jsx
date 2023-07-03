@@ -1,3 +1,4 @@
+import React from 'react';
 import CastItem from 'components/CastItem/CastItem';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';

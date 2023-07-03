@@ -9,7 +9,6 @@ const Home = () => {
   useEffect(() => {
     API.fetchQuery('3/trending/all/day?')
       .then(res => {
-        console.log(res);
         setMovies([...res.results]);
       })
       .catch(error => console.log(error));

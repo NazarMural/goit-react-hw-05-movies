@@ -1,16 +1,23 @@
-import React, { useEffect, useState } from 'react';
-import { NavLink, Outlet, useParams } from 'react-router-dom';
+import React, { Suspense, useEffect, useRef, useState } from 'react';
+import {
+  NavLink,
+  Outlet,
+  useParams,
+  useLocation,
+  Link,
+} from 'react-router-dom';
 import * as API from 'servises/api';
 import { Img, MovieSection } from './MovieDetails.styled';
 
 const MovieDetails = () => {
   const { movieID } = useParams();
   const [searchResult, setSearchResult] = useState({});
+  const location = useLocation();
+  const backLinkLocationRef = useRef(location.state?.from ?? '/');
 
   useEffect(() => {
     API.fetchQuery(`3/movie/${movieID}?`)
       .then(res => {
-        console.log(res);
         setSearchResult(res);
       })
       .catch(error => console.log(error));
@@ -18,6 +25,7 @@ const MovieDetails = () => {
 
   return (
     <>
+      <Link to={backLinkLocationRef.current}>Back</Link>
       <MovieSection>
         <Img
           src={
@@ -37,8 +45,9 @@ const MovieDetails = () => {
           <h3>Overview</h3>
           <p>{searchResult.overview || 'Not found'}</p>
           <h3>Genres</h3>
+          {console.log(searchResult.genres)}
           <p>
-            {searchResult.genres
+            {searchResult.genres === []
               ? searchResult.genres.map(genre => genre.name).join(', ')
               : 'Not found'}
           </p>
@@ -57,7 +66,9 @@ const MovieDetails = () => {
         </ul>
       </section>
       <hr></hr>
-      <Outlet />
+      <Suspense fallback={<div>Loading...</div>}>
+        <Outlet />
+      </Suspense>
     </>
   );
 };

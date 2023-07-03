@@ -1,9 +1,11 @@
-import { ItemNav, ListNav } from './Header.styled';
+import { HeaderCSS, ItemNav, ListNav } from './Header.styled';
 
 const Header = () => (
-  <ListNav>
-    <ItemNav to="/">Home</ItemNav>
-    <ItemNav to="/movies">Movies</ItemNav>
-  </ListNav>
+  <HeaderCSS>
+    <ListNav>
+      <ItemNav to="/">Home</ItemNav>
+      <ItemNav to="/movies">Movies</ItemNav>
+    </ListNav>
+  </HeaderCSS>
 );
 export default Header;

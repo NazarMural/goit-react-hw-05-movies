@@ -1,3 +1,6 @@
+import React from 'react';
+import PropTypes from 'prop-types';
+
 const CastItem = ({ item }) => {
   return (
     <>
@@ -18,3 +21,7 @@ const CastItem = ({ item }) => {
   );
 };
 export default CastItem;
+
+CastItem.propTypes = {
+  item: PropTypes.object.isRequired,
+};

@@ -7,7 +7,6 @@ import * as API from 'servises/api';
 
 const Movies = () => {
   const [value, setValue] = useState('');
-  // const [nameMovie, setNameMovie] = useState('');
   const [searchResult, setSearchResult] = useState([]);
   const [searchParams, setSearchParams] = useSearchParams('');
   const [notification, setNotification] = useState(false);
